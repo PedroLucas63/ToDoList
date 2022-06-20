@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>        
+        <!--Page Settings-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>ToDo List</title>        
+
+        <!--Page Informations-->
+        <meta name="description" content="Tasks page developed for studies in HTML, CSS, JavaScript and Tailwind CSS">
+        <meta name="keywords" content="tasks, todo, list, studies, html, css, javascript, tailwind css">
+        <meta name="author" content="Pedro Lucas">
+
+        <!--Local Styles-->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="stylesheet" href="assets/css/app.css">
+
+        <!--Tailwind Styles-->
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+        <!--jQuery Script-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <div class="bg-gray-100 h-screen" id="container">
+
+            <!--Navbar-->
+            <header>
+                <section class="bg-gray-900 flex justify-between px-3 py-4 filter shadow-lg" id="navbar">
+                    <!--Page Title-->
+                    <div class="" id="navbar-brand">
+                        <h1 class="text-white font-semibold text-2xl">To-Do List</h1>
+                    </div>
+                    <!--Search-->
+                    <div class="" id="navbar-search">
+                        <div class="flex" id="group-search">
+                            <input type="search" name="search" placeholder="Search..." class="bg-gray-100 p-1 rounded-l-md focus:outline-none" id="search">
+                            <button  onclick="searchTask()" class="bg-gray-100 text-gray-900 p-1 rounded-r-md hover:bg-gray-300" id="submit-search">
+                                <ion-icon name="search-outline" class="relative top-0.5" id="search-icon"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </header>
+
+            <!--Main Page-->
+            <main>
+                <!--Tasks Create-->
+                <section class="" id="create">
+                    <h2 class="hidden">Tasks Creation</h2>
+                    <div class="flex flex-col mx-4 my-2 md:flex-row md:justify-around" id="form-create">
+                        <div class="md:-mb-1" id="form-informations">
+                            <input type="text" name="form-title" placeholder="Title... " class="border border-gray-400 rounded-md p-1 focus:outline-none mb-2 w-full" id="title">
+                            <textarea name="form-description" placeholder="Description..." class="border border-gray-400 rounded-md p-1 focus:outline-none mb-2 w-full resize-none md:mb-0" id="description"></textarea>
+                        </div>
+                        <div class="" id="form-submit">
+                            <button onclick="createTask()" class="border border-green-500 rounded-md p-1 text-green-500 w-full hover:bg-green-500 hover:text-white hover:border-none transition duration-500 md:h-full" id="button-form">Submit</button>
+                        </div>
+                        
+                    </div>
+                </section>
+
+                <hr class="mx-4 border-1">
+
+                <!--Tasks List-->
+                <section class="" id="list">
+                    <h2 class="hidden">Tasks List</h2>
+
+                    <div class="mx-4 my-2 flex flex-col md:flex-row md:justify-between md:flex-wrap" id="tasks">
+                        
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!--Ionicons Scripts-->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+        <!--Handlebars Script-->
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+
+        <!--Handlebars Template-->
+        <script id="taskTemplate" type="text/x-handlebars-template">
+            <article class="bg-white p-2 mb-4 rounded-xl filter shadow-2xl" id="{{id}}">
+                <div class="flex justify-between border-b-2 border-gray-200 py-2 task-header">
+                    <div class="text-lg font-semibold task-title">
+                        <h3 class="{{complete}}">{{title}}</h3>
+                    </div>
+                    <div class="task-functions">
+                        <button onclick="completeTask(this)" class="transition duration-500 hover:bg-blue-400 hover:text-white complete-task">
+                            <ion-icon name="{{complete-icon}}" class="relative top-0.5 icon-task"></ion-icon>
+                        </button>
+                        <button onclick="editTask(this)" title="Edit" class="transition duration-500 hover:bg-green-400 hover:text-white edit-task">
+                            <ion-icon name="create-outline" class="relative top-0.5"></ion-icon>
+                        </button>
+                        <button onclick="removeTask(this)" title="Remove" class="transition duration-500 hover:bg-red-400 hover:text-white remove-task">
+                            <ion-icon name="close-outline" class="relative top-0.5"></ion-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="task-body">
+                    <div class="py-2 task-description">
+                        <p>
+                            {{description}}
+                        </p>
+                    </div>
+                </div>
+            </article>
+        </script>
+
+        <!--Scripts JavaScript-->
+        <script src="assets/js/app.js"></script>
+
+    </body>
+</html>
